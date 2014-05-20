@@ -104,11 +104,11 @@
 
 (defn- exception [stream text]
   (let [[line column] @(:position stream)]
-    (Exception. (printf "%s: line %d, column %d" text line column))))
+    (Exception. (format "%s: line %d, column %d" text line column))))
 
 (defn- eof-exception [stream text]
   (let [[line column] (peek @(:start stream))]
-    (EOFException. (printf "%s: starting from line %d, column %d" text line column))))
+    (EOFException. (format "%s: starting from line %d, column %d" text line column))))
 
 (defn- push-position [stream & _]
   (swap! (:start stream) conj @(:position stream)))
